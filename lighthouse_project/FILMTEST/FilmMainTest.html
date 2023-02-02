@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>The Project Lighthouse</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles.css" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
+        <!-- font awesome icons cdn -->
+        <style>
+        .box {
+           max-width: 100%;
+           height: auto;
+        }
+        .box img {
+           max-width: 100%;
+           height: auto;
+        }
+        .box .btn {
+           position: absolute;
+           top: 80%;
+           left: 40%;
+        }
+        #subquote {
+           position: absolute;
+           top: 40%;
+           left: 15%;
+        }
+       
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        background-color: #333;
+        padding-top: 110px;
+    }
+    .container #testconatiner{
+        background-color: #ffffff;
+        color: #000000;
+        border-radius: 20px;
+        padding: 40px; /*original is 20 px*/
+        font-family: 'Montserrat', sans-serif;
+        max-width: 700px;
+    }
+    .container > p{
+        font-size: 32px;
+    }
+    .question{
+        width: 100%;/*original is 75% px*/
+    }
+    .options{
+        position: relative;
+        padding-left: 40px;
+    }
+    #options label{
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 40px; /*original is 15 px*/
+        font-size: 14px;
+        cursor: pointer;
+        display:inline-block;
+        
+    }
+    .options input{
+        opacity: 0;
+    }
+    .checkmark {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #555;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+    }
+    .options input:checked ~ .checkmark:after {
+        display: block;
+    }
+    .options .checkmark:after{
+        content: "";
+        width: 10px;
+        height: 10px;
+        display: block;
+        background: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        transform: translate(-50%,-50%) scale(0);
+        transition: 300ms ease-in-out 0s;
+    }
+    .options input[type="radio"]:checked ~ .checkmark{
+        background: #f8b62f;
+        transition: 300ms ease-in-out 0s;
+    }
+    .options input[type="radio"]:checked ~ .checkmark:after{
+        transform: translate(-50%,-50%) scale(1);
+    }
+    .btn-primary{
+        background-color: #555;
+        color: #ddd;
+        border: 1px solid #ddd;
+    }
+    .btn-primary:hover{
+        background-color: #01f0a0;
+        border: 1px solid #01f0a0;
+        color: #000000;
+    }
+    .btn-success{
+        padding: 5px 25px;
+        background-color: #f8b62f;
+    }
+
+    .btn-danger{
+        background-color: #555;
+        color: #ddd;
+        border: 1px solid #ddd;
+    }
+    #prev{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .container #submit{
+        padding: 0px;
+        margin: 0px;
+    }
+
+
+    @media(max-width:576px){
+        .question{
+            width: 100%;
+            word-spacing: 2px;
+        } 
+    }
+     </style>
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+        <!-- Navigation-->        
+            <nav class="navbar navbar-expand-lg fixed-top h-0 shadow border-10" id="navbar-color">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="/index.html"><img class="navbar-img"src="/assets/icons/logo_text.png"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"id="thick-header"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"id="thick-header"><a class="nav-link" href="course.html">Courses</a></li>
+                            <li class="nav-item"id="thick-header"><a class="nav-link" href="career.html">Career Test</a></li>
+                            <li class="nav-item"id="thick-header"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"id="thick-header"><a class="nav-link" href="faq.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--begin quiz html-->
+            <div class="container mt-sm-5 my-5" id="testcontainer">
+                <form name="quiz" action="javascript:finish();">
+            
+                    <!--Question 1 (scriptwriter)-->
+                    <div class="container mt-sm-5 my-5">
+                        <div class="question py-2 h5"><p><b>Q1.</b> I enjoy writing or rewriting different stories</p></div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <div id="choices">
+                                <label class="options">Yes           
+                                    <input name="question_1" type="radio" value="7"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_1" type="radio" value="1,2,3,4,5,6,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>
+                        </div>     
+                            
+            
+                            
+                            
+                        <!--Question 2 (scriptwriter)-->
+                            <div class="question py-2 h5"><p><b>Q2.</b> I enjoy reading books and other stories</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options"> Yes 
+                                    <input name="question_2" type="radio" value="7">
+                                    <span class="checkmark"></span>
+                                </label> 
+                                <label class="options">No
+                                    <input name="question_2" type="radio" value="1,2,3,4,5,6,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>
+                            
+                        
+                            
+                        <!--Question 3 (producer)-->
+                        
+                            <div class="question py-2 h5"><p><b>Q3.</b> I would like to set the limits on budgets and negotiate the key contracts on a film</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes 
+                                    <input name="question_3" type="radio" value="5"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_3" type="radio" value="1,2,3,4,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>  
+                                        
+                            
+                            
+                        <!--Question 4 (producer)-->       
+                            <div class="question py-2 h5"><p><b>Q4.</b> I want to be responsible for key elements in a film’s production</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes
+                                    <input name="question_4" type="radio" value="5"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_4" type="radio" value="1,2,3,4,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>
+                            
+                            
+                            
+                        <!--Question 5(production manager)-->
+                            <div class="question py-2 h5"><p><b>Q5.</b> Handling call sheets, shooting schedules, production calendars, and managing a film crew is something I want to do</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes
+                                    <input name="question_5" type="radio" value="6"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_5" type="radio" value="1,2,3,4,5,7,8">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>
+                        
+            
+            
+                        <!--Question 6(production manager)-->
+                            <div class="question py-2 h5"><p><b>Q6.</b> Handling financials/budgets in a film is something I want to do</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_6" type="radio" value="6"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_6" type="radio" value="1,2,3,4,5,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+            
+                        <!--Question 7(independent filmmaker)-->
+                            <div class="question py-2 h5"><p><b>Q7.</b> I want to make a film that has a noticeably different look and feel than that of big budget productions</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_7" type="radio" value="4"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_7" type="radio" value="1,2,3,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+            
+                        <!--Question 8(independent filmmaker)-->
+                            <div class="question py-2 h5"><p><b>Q8.</b> I want to create films with my own creative vision, with less intervention as possible</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_8" type="radio" value="4"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_8" type="radio" value="1,2,3,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+            
+                        <!--Question 9(cinematrogrpaher)-->
+                            <div class="question py-2 h5"><p><b>Q9.</b> I love to envision stories or thoughts in my head through the lens of a camera</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_9" type="radio" value="8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_9" type="radio" value="1,2,3,4,5,6,7"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+            
+                        <!--Question 10(cinematrogrpaher)-->
+                            <div class="question py-2 h5"><p><b>Q10.</b> Exposure, lighting and camera placement and movement in a film interest me</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_10" type="radio" value="8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_10" type="radio" value="1,2,3,4,5,6,7"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+            
+                        <!--Question 11(director)-->
+                            <div class="question py-2 h5"><p><b>Q11.</b> Directing film crews and actors, and overseeing the production of the final film is something I would like to do</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_11" type="radio" value="2"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_11" type="radio" value="1,3,4,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                        
+            
+                        <!--Question 12(director)-->             
+                            <div class="question py-2 h5"><p><b>Q12.</b> Coordinating with a camera crew, art directors, costume designers and musical composer to ensure a consistent creative execution is something I want to do</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_12" type="radio" value="2"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_12" type="radio" value="1,3,4,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+            
+                        <!--Question 13(film editor)-->  
+                            <div class="question py-2 h5"><p><b>Q13.</b> I would like to assemble footage of feature films, television shows, documentaries, and industrials into a seamless and well-polished product</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_13" type="radio" value="1"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_13" type="radio" value="2,3,4,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                        
+            
+                        <!--Question 14(film editor)-->  
+                            <div class="question py-2 h5"><p><b>Q14.</b> I like using video editing softwares such as Adobe After Effects, Adobe Premiere Pro</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_14" type="radio" value="1"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_14" type="radio" value="2,3,4,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                        
+            
+                        <!--Question 15(film marketer)-->       
+                            <div class="question py-2 h5"><p><b>Q15.</b> Creating marketing campaigns for Film or TV shows is something I want to do</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_15" type="radio" value="3"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_15" type="radio" value="1,2,4,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+            
+                        <!--Question 16(film marketer)-->
+                            <div class="question py-2 h5"><p><b>Q16.</b> Making designs for movie promotions through billboards, posters, and a digital strategy is something that interests me</p></div>
+                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                                <label class="options">Yes           
+                                    <input name="question_16" type="radio" value="3"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="options">No
+                                    <input name="question_16" type="radio" value="1,2,4,5,6,7,8"> 
+                                    <span class="checkmark"></span>
+                                </label>
+                                <hr class="hr hr-blurry" />
+                            </div>     
+                            
+                            
+                            
+                        <!--Submit and Reset Buttons-->
+                            <div class="container mt-sm-5 my-5" id="submit">
+                                <div class="d-flex flex-column">
+                                    <div id="prev">
+                                        <input class="btn btn-primary" type="submit" value="Submit">      
+                                    
+                                        <input class="btn btn-danger" type="reset" value="Reset">
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+            </div>
+                </form>
+            </body>
+            <!-- end quiz html -->
+
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+            <script src="/js/scripts.js"></script>
+    </body>
+</html>
